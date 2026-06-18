@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flashcard Quiz App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .card {
+            width: 400px;
+            min-height: 150px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        input {
+            width: 300px;
+            padding: 8px;
+            margin: 5px;
+        }
+
+        .form {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Flashcard Quiz App</h1>
+
+    <div class="card">
+        <h3 id="question"></h3>
+        <p id="answer" style="display:none;"></p>
+    </div>
+
+    <button onclick="showAnswer()">Show Answer</button>
+    <button onclick="prevCard()">Previous</button>
+    <button onclick="nextCard()">Next</button>
+    <button onclick="editCard()">Edit</button>
+    <button onclick="deleteCard()">Delete</button>
+
+    <div class="form">
+        <h3>Add New Flashcard</h3>
+        <input type="text" id="newQuestion" placeholder="Enter Question"><br>
+        <input type="text" id="newAnswer" placeholder="Enter Answer"><br>
+        <button onclick="addCard()">Add Flashcard</button>
+    </div>
+
+    <script>
+        let flashcards = [
+            {
+                question: "What is HTML?",
+                answer: "HTML stands for HyperText Markup Language."
+            },
+            {
+                question: "What is CSS?",
+                answer: "CSS is used for styling web pages."
+            },
+            {
+                question: "What is JavaScript?",
+                answer: "JavaScript adds interactivity to websites."
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function displayCard() {
+            document.getElementById("question").innerText =
+                flashcards[currentIndex].question;
+
+            document.getElementById("answer").innerText =
+                flashcards[currentIndex].answer;
+
+            document.getElementById("answer").style.display = "none";
+        }
+
+        function showAnswer() {
+            document.getElementById("answer").style.display = "block";
+        }
+
+        function nextCard() {
+            if (currentIndex < flashcards.length - 1) {
+                currentIndex++;
+                displayCard();
+            }
+        }
+
+        function prevCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayCard();
+            }
+        }
+
+        function addCard() {
+            let question = document.getElementById("newQuestion").value;
+            let answer = document.getElementById("newAnswer").value;
+
+            if (question && answer) {
+                flashcards.push({ question, answer });
+
+                document.getElementById("newQuestion").value = "";
+                document.getElementById("newAnswer").value = "";
+
+                alert("Flashcard Added!");
+            }
+        }
+
+        function editCard() {
+            let newQuestion = prompt(
+                "Edit Question:",
+                flashcards[currentIndex].question
+            );
+
+            let newAnswer = prompt(
+                "Edit Answer:",
+                flashcards[currentIndex].answer
+            );
+
+            if (newQuestion && newAnswer) {
+                flashcards[currentIndex].question = newQuestion;
+                flashcards[currentIndex].answer = newAnswer;
+                displayCard();
+            }
+        }
+
+        function deleteCard() {
+            if (flashcards.length > 1) {
+                flashcards.splice(currentIndex, 1);
+
+                if (currentIndex >= flashcards.length) {
+                    currentIndex = flashcards.length - 1;
+                }
+
+                displayCard();
+            } else {
+                alert("At least one flashcard must remain.");
+            }
+        }
+
+        displayCard();
+    </script>
+
+</body>
+</html>
