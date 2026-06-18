@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Language Learning App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Language Learning App</h1>
+
+    <h2>Vocabulary Flashcards</h2>
+
+    <div class="card">
+        <h3 id="word">Hello</h3>
+        <p id="translation">नमस्ते</p>
+        <button onclick="speakWord()">🔊 Pronounce</button>
+    </div>
+
+    <button onclick="prevCard()">Previous</button>
+    <button onclick="nextCard()">Next</button>
+
+    <hr>
+
+    <h2>Quiz</h2>
+
+    <p id="quizQuestion"></p>
+
+    <input type="text" id="answer" placeholder="Your Answer">
+
+    <button onclick="checkAnswer()">Submit</button>
+
+    <p id="result"></p>
+
+    <h3>Score: <span id="score">0</span></h3>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
