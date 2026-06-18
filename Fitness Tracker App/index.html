@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fitness Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Fitness Tracker</h1>
+
+        <div class="form">
+            <input type="number" id="steps" placeholder="Steps">
+            <input type="text" id="exercise" placeholder="Exercise Type">
+            <input type="number" id="duration" placeholder="Duration (mins)">
+            <input type="number" id="calories" placeholder="Calories Burned">
+
+            <button onclick="addActivity()">Add Activity</button>
+        </div>
+
+        <div class="dashboard">
+            <h2>Today's Summary</h2>
+
+            <p>Total Steps: <span id="totalSteps">0</span></p>
+            <p>Total Calories: <span id="totalCalories">0</span></p>
+
+            <div class="progress-container">
+                <div id="progressBar"></div>
+            </div>
+
+            <h3>Activities</h3>
+            <ul id="activityList"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
